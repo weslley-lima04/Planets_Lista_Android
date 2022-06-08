@@ -1,9 +1,11 @@
 package br.com.etecia.myplanets;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +31,23 @@ public class ClickMandaPlanetaActivity extends AppCompatActivity {
         txt_mostra_planeta.setText(nomeplaneta);
         img_mostra_planeta.setImageResource(imagemplaneta);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+    //criamos botão de voltar
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+        {
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
