@@ -3,9 +3,11 @@ package br.com.etecia.myplanets;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,6 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
         Adapter adapter = new Adapter();
         lista_planetas.setAdapter(adapter);
+
+
+        //implementando o click quando clica em um item da lista
+        lista_planetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), ClickMandaPlanetaActivity.class);
+                intent.putExtra("nome_planeta", nome_planetas[i]);  //nome da variável que será resgatada do outro lado + de onde ela veio
+                intent.putExtra("img_planeta", imagem_planetas[i]);
+
+                startActivity(intent);
+            }
+        });
+
     }
 
     //criando o adaptador como classe interna
